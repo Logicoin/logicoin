@@ -2412,27 +2412,7 @@ bool CBlock::AcceptBlock(CValidationState &state, CDiskBlockPos *dbp)
             if (nBits != GetNextWorkRequired(pindexPrev, this))
                 return state.DoS(100, error("AcceptBlock() : incorrect proof of work"));
         } else {
-            #ifdef _WIN32
-                // Check proof of work       
-                if(nHeight >= 60){
-                    unsigned int nBitsNext = GetNextWorkRequired(pindexPrev, this);
-                    double n1 = ConvertBitsToDouble(nBits);
-                    double n2 = ConvertBitsToDouble(nBitsNext);
-
-                    if (nHeight <= 40000) {
-                        if (abs(n1-n2) > n1*0.2) 
-                            return state.DoS(100, error("AcceptBlock() : incorrect proof of work (DGW pre-fork)"));
-                    } else {
-                        if (abs(n1-n2) > n1*0.005) 
-                            return state.DoS(100, error("AcceptBlock() : incorrect proof of work (DGW2)"));
-                    }
-                } else {
-                    if (nBits != GetNextWorkRequired(pindexPrev, this))
-                        return state.DoS(100, error("AcceptBlock() : incorrect proof of work"));
-                }
-            #else
-                // Check proof of work
-                if(nHeight >= 60 && nHeight <= 40000){
+                if(nHeight >= 60 && nHeight <= 86400){
                     unsigned int nBitsNext = GetNextWorkRequired(pindexPrev, this);
                     double n1 = ConvertBitsToDouble(nBits);
                     double n2 = ConvertBitsToDouble(nBitsNext);
@@ -2442,7 +2422,6 @@ bool CBlock::AcceptBlock(CValidationState &state, CDiskBlockPos *dbp)
                     if (nBits != GetNextWorkRequired(pindexPrev, this))
                         return state.DoS(100, error("AcceptBlock() : incorrect proof of work"));
                 }
-            #endif
         }
 
 

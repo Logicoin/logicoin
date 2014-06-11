@@ -1194,8 +1194,6 @@ void MapPort(bool)
 
 static const char *strMainNetDNSSeed[][2] = {
     {"l337bet.net", "dnsseed.l337bet.net"}, //First Seed Node
-    {"", "107.178.113.62"},
-    {"", "162.243.248.229"},
     {NULL, NULL},
 };
 

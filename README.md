@@ -6,7 +6,7 @@ Copyright (c) 2013-2014 LogiCoin Developers
 
 ================================
 
-![GitHub Logo](http://i.imgur.com/YTu9aXp.png "Logicoin Logo")
+![GitHub Logo](http://i.imgur.com/CpSmkJh.png "Logicoin Logo")
 
 Building
 --------

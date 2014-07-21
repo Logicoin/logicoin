@@ -48,7 +48,7 @@ QMAKE_CXXFLAGS *= -D_FORTIFY_SOURCE=2
 # for extra security on Windows: enable ASLR and DEP via GCC linker flags
 win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat
 # on Windows: enable GCC large address aware linker flag
-win32:QMAKE_LFLAGS *= -Wl,--large-address-aware
+win32:QMAKE_LFLAGS *= -Wl,--large-address-aware -static
 # i686-w64-mingw32
 win32:QMAKE_LFLAGS *= -static-libgcc -static-libstdc++
 
@@ -147,6 +147,10 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/aboutdialog.h \
     src/qt/editaddressdialog.h \
     src/qt/bitcoinaddressvalidator.h \
+	src/qt/blockbrowser.h \
+	src/qt/statisticspage.h \
+    src/qt/chatwindow.h \
+    src/qt/serveur.h \
     src/alert.h \
     src/addrman.h \
     src/base58.h \
@@ -192,9 +196,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/transactionfilterproxy.h \
     src/qt/transactionview.h \
     src/qt/walletmodel.h \
-    src/qt/walletview.h \
-    src/qt/walletstack.h \
-    src/qt/walletframe.h \
     src/bitcoinrpc.h \
     src/qt/overviewpage.h \
     src/qt/csvmodelwriter.h \
@@ -206,7 +207,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/qt/askpassphrasedialog.h \
     src/protocol.h \
     src/qt/notificator.h \
-    src/qt/paymentserver.h \
     src/allocators.h \
     src/ui_interface.h \
     src/qt/rpcconsole.h \
@@ -217,8 +217,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/leveldb.h \
     src/threadsafety.h \
     src/limitedmap.h \
-    src/qt/macnotificationhandler.h \
-    src/qt/splashscreen.h \
     src/hashblock.h \
     src/sph_blake.h \
     src/sph_skein.h \
@@ -246,6 +244,10 @@ SOURCES += src/qt/bitcoin.cpp \
     src/qt/aboutdialog.cpp \
     src/qt/editaddressdialog.cpp \
     src/qt/bitcoinaddressvalidator.cpp \
+	src/qt/blockbrowser.cpp \
+    src/qt/statisticspage.cpp \
+    src/qt/chatwindow.cpp \
+    src/qt/serveur.cpp \
     src/alert.cpp \
     src/version.cpp \
     src/sync.cpp \
@@ -276,9 +278,6 @@ SOURCES += src/qt/bitcoin.cpp \
     src/qt/transactionfilterproxy.cpp \
     src/qt/transactionview.cpp \
     src/qt/walletmodel.cpp \
-    src/qt/walletview.cpp \
-    src/qt/walletstack.cpp \
-    src/qt/walletframe.cpp \
     src/bitcoinrpc.cpp \
     src/rpcdump.cpp \
     src/rpcnet.cpp \
@@ -296,12 +295,10 @@ SOURCES += src/qt/bitcoin.cpp \
     src/qt/askpassphrasedialog.cpp \
     src/protocol.cpp \
     src/qt/notificator.cpp \
-    src/qt/paymentserver.cpp \
     src/qt/rpcconsole.cpp \
     src/noui.cpp \
     src/leveldb.cpp \
     src/txdb.cpp \
-    src/qt/splashscreen.cpp \
     src/blake.c \
     src/bmw.c \
     src/groestl.c \
@@ -327,7 +324,10 @@ FORMS += src/qt/forms/sendcoinsdialog.ui \
     src/qt/forms/sendcoinsentry.ui \
     src/qt/forms/askpassphrasedialog.ui \
     src/qt/forms/rpcconsole.ui \
-    src/qt/forms/optionsdialog.ui
+    src/qt/forms/optionsdialog.ui \
+    src/qt/forms/blockbrowser.ui \
+    src/qt/forms/statisticspage.ui \
+    src/qt/forms/chatwindow.ui
 
 contains(USE_QRCODE, 1) {
 HEADERS += src/qt/qrcodedialog.h
